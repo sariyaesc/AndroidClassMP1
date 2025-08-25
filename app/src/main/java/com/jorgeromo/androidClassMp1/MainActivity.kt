@@ -3,24 +3,32 @@ package com.jorgeromo.androidClassMp1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.*
+import androidx.navigation.compose.rememberNavController
 import com.jorgeromo.androidClassMp1.navigation.TabBarNavigationView
-import com.jorgeromo.androidClassMp1.ui.theme.AndroidClassMP1Theme
+import com.jorgeromo.androidClassMp1.onboarding.OnboardingScreen
+import com.jorgeromo.androidClassMp1.onboarding.OnboardingViewModel
 
 class MainActivity : ComponentActivity() {
+    private val onboardingViewModel = OnboardingViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            AndroidClassMP1Theme {
-                TabBarNavigationView()
+            var showOnboarding by remember {
+                mutableStateOf(!onboardingViewModel.isOnboardingCompleted(this))
+            }
+
+            if (showOnboarding) {
+                OnboardingScreen(
+                    onFinish = {
+                        onboardingViewModel.saveOnboardingCompleted(this)
+                        showOnboarding = false
+                    }
+                )
+            } else {
+                val navController = rememberNavController()
+                TabBarNavigationView(navController = navController)
             }
         }
     }
