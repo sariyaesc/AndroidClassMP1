@@ -19,17 +19,27 @@ class MainActivity : ComponentActivity() {
                 mutableStateOf(!onboardingViewModel.isOnboardingCompleted(this))
             }
 
-            if (showOnboarding) {
-                OnboardingScreen(
-                    onFinish = {
-                        onboardingViewModel.saveOnboardingCompleted(this)
-                        showOnboarding = false
-                    }
-                )
-            } else {
-                val navController = rememberNavController()
-                TabBarNavigationView(navController = navController)
+            var showLogin by remember { mutableStateOf(false) }
+
+            when {
+                showOnboarding -> {
+                    OnboardingScreen(
+                        onFinish = {
+                            onboardingViewModel.saveOnboardingCompleted(this)
+                            showOnboarding = false
+                            showLogin = true
+                        }
+                    )
+                }
+                showLogin -> {
+                    com.jorgeromo.androidClassMp1.login.LoginScreen(
+                        onLoginSuccess = { showLogin = false }
+                    )
+                }
+                else -> {
+                    val navController = rememberNavController()
+                    TabBarNavigationView(navController = navController)
+                }
             }
-        }
-    }
-}
+        }}}
+
