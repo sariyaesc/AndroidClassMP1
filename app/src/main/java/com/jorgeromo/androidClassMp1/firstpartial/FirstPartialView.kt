@@ -1,15 +1,18 @@
 package com.jorgeromo.androidClassMp1.firstpartial
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.jorgeromo.androidClassMp1.navigation.ScreenNavigation
 
 @Composable
-fun FirstPartialView() {
+fun FirstPartialView(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -22,5 +25,14 @@ fun FirstPartialView() {
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Button(
+            onClick = { navController.navigate(ScreenNavigation.Login.route) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Ir a Login")
+        }
     }
 }

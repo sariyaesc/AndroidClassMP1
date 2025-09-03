@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.navigation.compose.rememberNavController
-import com.jorgeromo.androidClassMp1.navigation.TabBarNavigationView
 import com.jorgeromo.androidClassMp1.onboarding.OnboardingScreen
 import com.jorgeromo.androidClassMp1.onboarding.OnboardingViewModel
+import com.jorgeromo.androidClassMp1.navigation.TabBarNavigationView
 
 class MainActivity : ComponentActivity() {
     private val onboardingViewModel = OnboardingViewModel()
@@ -19,27 +19,17 @@ class MainActivity : ComponentActivity() {
                 mutableStateOf(!onboardingViewModel.isOnboardingCompleted(this))
             }
 
-            var showLogin by remember { mutableStateOf(false) }
-
-            when {
-                showOnboarding -> {
-                    OnboardingScreen(
-                        onFinish = {
-                            onboardingViewModel.saveOnboardingCompleted(this)
-                            showOnboarding = false
-                            showLogin = true
-                        }
-                    )
-                }
-                showLogin -> {
-                    com.jorgeromo.androidClassMp1.login.LoginScreen(
-                        onLoginSuccess = { showLogin = false }
-                    )
-                }
-                else -> {
-                    val navController = rememberNavController()
-                    TabBarNavigationView(navController = navController)
-                }
+            if (showOnboarding) {
+                OnboardingScreen(
+                    onFinish = {
+                        onboardingViewModel.saveOnboardingCompleted(this)
+                        showOnboarding = false
+                    }
+                )
+            } else {
+                val navController = rememberNavController()
+                TabBarNavigationView(navController = navController)
             }
-        }}}
-
+        }
+    }
+}

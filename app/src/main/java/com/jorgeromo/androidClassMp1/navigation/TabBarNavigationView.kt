@@ -20,6 +20,7 @@ import com.jorgeromo.androidClassMp1.ids.sum.views.SumView
 import com.jorgeromo.androidClassMp1.ids.temperature.views.TempView
 import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 import androidx.compose.ui.graphics.Color
+import com.jorgeromo.androidClassMp1.ids.login.LoginScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -95,9 +96,12 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(ScreenNavigation.Ids.route) { IdsView(navController) }
-            composable(ScreenNavigation.FirstPartial.route) { FirstPartialView() }
+            composable(ScreenNavigation.FirstPartial.route) { FirstPartialView(navController) }
             composable(ScreenNavigation.SecondPartial.route) { SecondPartialView() }
             composable(ScreenNavigation.ThirdPartial.route) { ThirdPartialView(navController) }
+            composable(ScreenNavigation.Login.route) { LoginScreen() }
+
+
 
             // Rutas internas
             composable(ScreenNavigation.IMC.route) { IMCView() }

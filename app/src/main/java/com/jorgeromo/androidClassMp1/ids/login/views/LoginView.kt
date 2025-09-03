@@ -47,7 +47,7 @@ fun LoginView() {
     ) {
         // Imagen del logo
         Image(
-            painter = painterResource(id = R.drawable.ulsalogo),
+            painter = painterResource(id = R.drawable.onb_1),
             contentDescription = "",
             modifier = Modifier
                 .size(150.dp)
