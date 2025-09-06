@@ -34,5 +34,14 @@ fun FirstPartialView(navController: NavController) {
         ) {
             Text("Ir a Login")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = { navController.navigate(ScreenNavigation.LottieScreen.route) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Ver animación")
+        }
     }
 }

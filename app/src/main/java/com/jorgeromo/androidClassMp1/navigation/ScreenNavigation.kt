@@ -16,4 +16,6 @@ sealed class ScreenNavigation(val route: String, val label: String, val icon: Im
     object StudentList : ScreenNavigation("StudentListRoute", "Estudiantes", Icons.Default.People)
     object Locations : ScreenNavigation("LocationsListRoute", "Location", Icons.Default.People)
 
+    // Nueva pantalla Lottie
+    object LottieScreen : ScreenNavigation("LottieScreenRoute", "Animación", Icons.Default.PlayArrow)
 }
