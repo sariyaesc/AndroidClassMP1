@@ -44,6 +44,7 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation("io.coil-kt:coil-compose:2.4.0")
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

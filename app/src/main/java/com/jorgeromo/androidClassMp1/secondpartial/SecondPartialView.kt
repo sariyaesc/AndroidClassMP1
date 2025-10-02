@@ -1,17 +1,22 @@
+package com.jorgeromo.androidClassMp1.secondpartial
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.jorgeromo.androidClassMp1.navigation.ScreenNavigation
 
 @Composable
-fun SecondPartialView() {
+fun SecondPartialView(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -24,5 +29,15 @@ fun SecondPartialView() {
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )
+
+        // Botón para ir a Home
+        Button(
+            onClick = { navController.navigate(ScreenNavigation.Home.route) },
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .fillMaxWidth()
+        ) {
+            Text(text = "Ir a Home")
+        }
     }
 }
