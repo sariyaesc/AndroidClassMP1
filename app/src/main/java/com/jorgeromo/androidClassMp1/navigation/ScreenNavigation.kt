@@ -11,11 +11,10 @@ sealed class ScreenNavigation(val route: String, val label: String, val icon: Im
     object ThirdPartial : ScreenNavigation("ThirdPartialRoute", "Parcial 3", Icons.Default.Event)
     object IMC : ScreenNavigation("IMCRoute", "IMC", Icons.Default.Event)
     object Login : ScreenNavigation("LoginRoute", "Login", Icons.Default.Event)
+    object Home : ScreenNavigation("HomeRoute", "Home", Icons.Default.People)
     object Sum : ScreenNavigation("SumRoute", "Sum", Icons.Default.Event)
     object Temperature : ScreenNavigation("TemperatureRoute", "Temperature", Icons.Default.Event)
     object StudentList : ScreenNavigation("StudentListRoute", "Estudiantes", Icons.Default.People)
-    object Locations : ScreenNavigation("LocationsListRoute", "Location", Icons.Default.People)
-
-    // Nueva pantalla Lottie
+    object Locations : ScreenNavigation("LocationsListRoute", "Ubicaciones", Icons.Default.Place)
     object LottieScreen : ScreenNavigation("LottieScreenRoute", "Animación", Icons.Default.PlayArrow)
 }

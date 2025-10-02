@@ -1,13 +1,11 @@
 package com.jorgeromo.androidClassMp1.navigation
 
-import SecondPartialView
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import com.jorgeromo.androidClassMp1.firstpartial.FirstPartialView
@@ -19,6 +17,9 @@ import com.jorgeromo.androidClassMp1.ids.student.views.StudentView
 import com.jorgeromo.androidClassMp1.ids.sum.views.SumView
 import com.jorgeromo.androidClassMp1.ids.temperature.views.TempView
 import com.jorgeromo.androidClassMp1.ids.location.views.LocationListScreen
+import com.jorgeromo.androidClassMp1.secondpartial.SecondPartialView
+import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModel
+import com.jorgeromo.androidClassMp1.secondpartial.home.views.HomeViewProducts
 import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,6 +41,7 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
 
             ScreenNavigation.IMC.route to "IMC",
             ScreenNavigation.Login.route to "Login",
+            ScreenNavigation.Home.route to "Home",
             ScreenNavigation.Sum.route to "Suma",
             ScreenNavigation.Temperature.route to "Temperatura",
             ScreenNavigation.StudentList.route to "Estudiantes",
@@ -49,7 +51,6 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val currentTitle = routeTitles[currentRoute] ?: ""
 
     Scaffold(
         topBar = {
@@ -93,18 +94,22 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             // Bottom tabs
             composable(ScreenNavigation.Ids.route) { IdsView(navController) }
             composable(ScreenNavigation.FirstPartial.route) { FirstPartialView(navController) }
-            composable(ScreenNavigation.SecondPartial.route) { SecondPartialView() }
+            composable(ScreenNavigation.SecondPartial.route) { SecondPartialView(navController) }
             composable(ScreenNavigation.ThirdPartial.route) { ThirdPartialView(navController) }
 
             // Pantallas internas
             composable(ScreenNavigation.IMC.route) { IMCView() }
-            composable(ScreenNavigation.Login.route) { LoginView() }
+            composable(ScreenNavigation.Login.route) { LoginView(navController) }
+            composable(ScreenNavigation.Home.route) {
+                val viewModel: HomeViewModel = viewModel() // ✅ sin parámetros
+                val uiState by viewModel.ui.collectAsState()
+                HomeViewProducts(uiState = uiState)
+            }
             composable(ScreenNavigation.Sum.route) { SumView() }
             composable(ScreenNavigation.Temperature.route) { TempView() }
             composable(ScreenNavigation.StudentList.route) { StudentView() }
             composable(ScreenNavigation.Locations.route) { LocationListScreen() }
             composable(ScreenNavigation.LottieScreen.route) { LottieAnimationScreen(navController) }
-
         }
     }
 }
