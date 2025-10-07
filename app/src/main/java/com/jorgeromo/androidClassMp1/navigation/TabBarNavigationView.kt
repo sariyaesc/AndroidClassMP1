@@ -20,6 +20,7 @@ import com.jorgeromo.androidClassMp1.ids.location.views.LocationListScreen
 import com.jorgeromo.androidClassMp1.secondpartial.SecondPartialView
 import com.jorgeromo.androidClassMp1.secondpartial.home.viewmodel.HomeViewModel
 import com.jorgeromo.androidClassMp1.secondpartial.home.views.HomeViewProducts
+import com.jorgeromo.androidClassMp1.secondpartial.location.LocationCoordianteView
 import com.jorgeromo.androidClassMp1.thirdpartial.ThirdPartialView
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -110,6 +111,9 @@ fun TabBarNavigationView(navController: NavHostController = rememberNavControlle
             composable(ScreenNavigation.StudentList.route) { StudentView() }
             composable(ScreenNavigation.Locations.route) { LocationListScreen() }
             composable(ScreenNavigation.LottieScreen.route) { LottieAnimationScreen(navController) }
+            composable(ScreenNavigation.LocationCoordinate.route) {
+                LocationCoordianteView()
+            }
         }
     }
 }

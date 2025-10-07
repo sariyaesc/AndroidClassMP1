@@ -2,8 +2,10 @@ package com.jorgeromo.androidClassMp1.secondpartial
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -39,5 +41,13 @@ fun SecondPartialView(navController: NavController) {
         ) {
             Text(text = "Ir a Home")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // NUEVO botón
+        Button(
+            onClick = { navController.navigate(ScreenNavigation.LocationCoordinate.route) },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("Coordenadas (en vivo)") }
     }
 }
